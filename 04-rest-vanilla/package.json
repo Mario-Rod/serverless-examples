@@ -1,0 +1,39 @@
+{
+  "name": "restvanilla",
+  "version": "1.0.0",
+  "description": "ServerlessPracticalWay - Rest (Vanilla JS) - Example 4",
+  "scripts": {
+    "start": "sls offline",
+    "deploy-dev": "sls deploy -s dev",
+    "test-unit": "jest test/unit",
+    "test-integration": "jest test/integration",
+    "test-integration-local": "sh scripts/run_integration_local.sh",
+    "test-integration-clean": "sh scripts/run_integration_test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresSomadossi/serverless-practical-way.git"
+  },
+  "keywords": [
+    "serverless"
+  ],
+  "author": "Andres Somadossi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndresSomadossi/serverless-practical-way/issues"
+  },
+  "homepage": "https://github.com/AndresSomadossi/serverless-practical-way#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.0",
+    "aws-sdk": "^2.618.0",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "jest": "^25.1.0",
+    "serverless-offline": "^5.12.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

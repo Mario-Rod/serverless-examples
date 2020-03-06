@@ -1,0 +1,30 @@
+getFoods:
+  handler: src/modules/food/controller.getFoods
+  events:
+    - http:
+        path: api/food
+        method: get
+getFood:
+  handler: src/modules/food/controller.getFood
+  events:
+    - http:
+        path: api/food/{id}
+        method: get
+createFood:
+  handler: src/modules/food/controller.createFood
+  events:
+    - http:
+        path: api/food
+        method: post
+updateFood:
+  handler: src/modules/food/controller.updateFood
+  events:
+    - http:
+        path: api/food/{id}
+        method: put
+deleteFood:
+  handler: src/modules/food/controller.deleteFood
+  events:
+    - http:
+        path: api/food/{id}
+        method: delete

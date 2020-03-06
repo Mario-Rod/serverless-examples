@@ -1,0 +1,28 @@
+{
+  "name": "restexpress",
+  "version": "1.0.0",
+  "description": "ServerlessPracticalWay - Rest (Express Approach) - Example 3",
+  "main": "handler.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresSomadossi/serverless-practical-way.git"
+  },
+  "keywords": [
+    "serverless"
+  ],
+  "author": "Andres Somadossi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndresSomadossi/serverless-practical-way/issues"
+  },
+  "homepage": "https://github.com/AndresSomadossi/serverless-practical-way#readme",
+  "dependencies": {
+    "aws-serverless-express": "^3.3.6",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^5.12.1"
+  }
+}

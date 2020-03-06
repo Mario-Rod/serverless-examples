@@ -1,0 +1,34 @@
+frameworkVersion: ">=1.50.0"
+service: restvanilla
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  tags:
+    project: serverlesspracticalway
+  stage: ${opt:stage, self:custom.DEFAULT_STAGE}
+  iamRoleStatements: ${file(resources/iamRoleStatement.yml)}
+  environment:
+    NODE_ENV: ${self:provider.stage}
+    TABLE_FOODS:
+      Ref: TableFoods
+
+custom:
+  DEFAULT_STAGE: local
+
+functions:
+  - ${file(src/modules/food/api.yml)}
+  - version:
+      handler: src/utils/commons.version
+      description: 'Return the current version'
+      events:
+        - http:
+            path: api/version
+            method: get
+
+resources:
+  - ${file(resources/tables.yml)}

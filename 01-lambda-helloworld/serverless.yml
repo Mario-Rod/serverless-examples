@@ -1,0 +1,6 @@
+service: helloworld
+provider:
+  name: aws
+functions:
+  helloWorld:
+    handler: handler.helloWorld

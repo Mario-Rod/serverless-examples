@@ -1,0 +1,19 @@
+frameworkVersion: ">=1.50.0"
+service: restexpress
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  tags:
+    project: serverlesspracticalway
+
+functions:
+  app:
+    handler: handler.app
+    description: "Handler HTTP (express.js)"
+    events:
+      - http: 'ANY {proxy+}'
