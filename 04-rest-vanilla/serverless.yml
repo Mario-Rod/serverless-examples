@@ -14,8 +14,7 @@ provider:
   iamRoleStatements: ${file(resources/iamRoleStatement.yml)}
   environment:
     NODE_ENV: ${self:provider.stage}
-    TABLE_FOODS:
-      Ref: TableFoods
+    TABLE_FOODS: ${self:resources.Resources.TableFoods.Properties.TableName}
 
 custom:
   DEFAULT_STAGE: local
