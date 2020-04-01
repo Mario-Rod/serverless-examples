@@ -1,0 +1,42 @@
+frameworkVersion: ">=1.50.0"
+service: asyncdispatcher
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  tags:
+    project: serverlesspracticalway
+  stage: ${opt:stage, self:custom.DEFAULT_STAGE}
+  iamRoleStatements: ${file(resources/iamRoleStatement.yml)}
+  environment:
+    NODE_ENV: ${self:provider.stage}
+    DISPATCHER_TIMEOUT: ${self:custom.DISPATCHER_TIMEOUT}
+    DISPATCHER_RETRY_TIME: ${self:custom.SQS_DISPATCHER_VISIBILITY_TIMEOUT}
+    DISPATCHER_QUEUE:
+      Ref: CallbacksDispatcherQueue
+    DISPATCHER_DLQ:
+      Ref: CallbacksDispatcherDeadLetterQueue
+custom:
+  DEFAULT_STAGE: local
+  DISPATCHER_TIMEOUT: 5
+  LAMBDA_TIMEOUT: 10
+  SQS_DISPATCHER_VISIBILITY_TIMEOUT: 60
+  SQS_DISPATCHER_MAX_RETRIES: 5
+  SQS_DISPATCHER_RETENTION: 72000 # 2 hours in seconds
+  SQS_DISPATCHER_DLQ_RETENTION: 1209600 # 14 days in seconds
+
+functions:
+  dispatch:
+    handler: src/modules/dispatcher/controller.dispatch
+    timeout: ${self:custom.LAMBDA_TIMEOUT}
+    events:
+      - sqs:
+          arn: { "Fn::GetAtt": [ "CallbacksDispatcherQueue", "Arn" ] }
+          batchSize: 1
+
+resources:
+  - ${file(resources/queues.yml)}

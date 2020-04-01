@@ -1,0 +1,31 @@
+frameworkVersion: ">=1.50.0"
+service: lambdamockserver
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  tags:
+    project: serverlesspracticalway
+  stage: ${opt:stage, self:custom.DEFAULT_STAGE}
+custom:
+  DEFAULT_STAGE: local
+package:
+  exclude:
+    - ./**
+  include:
+    - lambda_mock_server.js
+
+functions:
+  custom_api:
+    handler: lambda_mock_server.custom_api
+    events:
+      - http:
+          path: /api/custom
+          method: get
+      - http:
+          path: /api/custom
+          method: post

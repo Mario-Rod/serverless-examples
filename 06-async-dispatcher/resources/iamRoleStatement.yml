@@ -1,0 +1,10 @@
+- Effect: Allow
+  Action:
+    - sqs:ChangeMessageVisibility
+  Resource:
+    - { "Fn::GetAtt": [ "CallbacksDispatcherQueue", "Arn" ] }
+- Effect: Allow
+  Action:
+    - sqs:SendMessage
+  Resource:
+    - { "Fn::GetAtt": [ "CallbacksDispatcherDeadLetterQueue", "Arn" ] }

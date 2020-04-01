@@ -1,0 +1,20 @@
+Resources:  
+  CallbacksDispatcherQueue: 
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: '${self:provider.stage}-callbacks-dispatcher-queue'
+      VisibilityTimeout: ${self:custom.SQS_DISPATCHER_VISIBILITY_TIMEOUT}
+      MessageRetentionPeriod: ${self:custom.SQS_DISPATCHER_RETENTION}
+      RedrivePolicy:
+        deadLetterTargetArn: { "Fn::GetAtt": [ "CallbacksDispatcherDeadLetterQueue", "Arn" ] }
+        maxReceiveCount:  ${self:custom.SQS_DISPATCHER_MAX_RETRIES}
+  CallbacksDispatcherDeadLetterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: '${self:provider.stage}-callbacks-dispatcher-dead-letter-queue'
+      MessageRetentionPeriod: ${self:custom.SQS_DISPATCHER_DLQ_RETENTION}
+Outputs:
+  CallbacksDispatcherQueueOutput:
+    Value: !Ref CallbacksDispatcherQueue
+  CallbacksDispatcherDeadLetterQueueOutput:
+    Value: !Ref CallbacksDispatcherDeadLetterQueue
