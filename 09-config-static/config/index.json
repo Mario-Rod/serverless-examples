@@ -1,0 +1,40 @@
+{
+  "defaults": {
+    "outputs": {
+      "helloWorldFunction": "HelloWorldLambdaFunctionQualifiedArn",
+      "anInvialidResource": "anInvialidResourceARN"
+    },
+    "secrets": [
+      "validSecret",
+      "invalidSecret"
+    ],
+    "resources": {
+      "functions": {
+        "helloWorld": {
+          "memorySize": 128
+        }
+      }
+    },
+    "statics": {
+      "defaultTimeout": 10
+    }
+  },
+  "local": {
+    "statics": {
+      "defaultTimeout": 20
+    }
+  },
+  "dev": {
+    "statics": {
+      "defaultTimeout": 5
+    },
+    "resources": {
+      "functions": {
+        "helloWorld": {
+          "memorySize": 512
+        }
+      }
+    }
+  },
+  "prod": {}
+}

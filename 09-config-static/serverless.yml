@@ -1,0 +1,23 @@
+frameworkVersion: ">=1.50.0"
+service: config-static
+
+plugins:
+  - config
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  tags:
+    project: serverlesspracticalway
+
+package:
+  exclude:
+    - ./**
+    - '!node_modules/**'
+    - '!dist/**'
+
+functions:
+  helloWorld:
+    handler: dist/handler.helloWorld
+    memorySize: ${file(./dist/config/default.json):resources.functions.helloWorld.memorySize}

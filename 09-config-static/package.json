@@ -1,0 +1,35 @@
+{
+  "name": "config-static",
+  "version": "1.0.0",
+  "description": "ServerlessPracticalWay - Rest (Vanilla JS) - Example 4",
+  "scripts": {
+    "start": "sls getconfig -s local && sls invoke local -f helloWorld",
+    "deploy-dev": "sls getconfig -s dev && sls deploy -s dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresSomadossi/serverless-practical-way.git"
+  },
+  "keywords": [
+    "serverless"
+  ],
+  "author": "Andres Somadossi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndresSomadossi/serverless-practical-way/issues"
+  },
+  "homepage": "https://github.com/AndresSomadossi/serverless-practical-way#readme",
+  "dependencies": {
+    "aws-sdk": "^2.618.0",
+    "config": "^3.3.1",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "fs-extra": "^9.0.0",
+    "filewalker": "^0.1.3",
+    "terser": "^4.6.7"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
