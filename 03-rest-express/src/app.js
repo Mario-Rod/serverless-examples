@@ -4,7 +4,7 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 const bodyParser = require('body-parser');
 const app = express();
 const apiFood = require('./food/api');
-const package = require('../package.json.js');
+const package = require('../package.json.js.js');
 
 // Input parser middlewares
 app.use(bodyParser.json({ type: 'application/json' }));
